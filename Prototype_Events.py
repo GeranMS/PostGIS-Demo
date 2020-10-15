@@ -169,7 +169,7 @@ def event_create_random(lon: float, lat: float, min_dist: float, max_dist: float
     # Create a cursor object
     cur2 = conn.cursor()
 
-    for num,point in enumerate(range(0,num),1):
+    for num,points in enumerate(range(0,num),1):
 
         # Create random coordinates within radius of distance provided
         lon2,lat2 = getEndpoint(lat,lon,min_dist,max_dist)
