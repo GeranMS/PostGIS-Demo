@@ -28,7 +28,7 @@ The CLI was developed with the python module, [fire](https://github.com/google/p
 
 ## Basic Usage(event_create_random):
 
-If you want to populate the database with a number of data points(locations) you would use the ,event_create_random, command. e.g Create a 1000 points in a radius from 5000m to 10000m from a location(18.865644 -33.930755) as follows:
+If you want to populate the database with a number of data points(locations) you would use the, event_create_random, command. e.g Create a 1000 points in a radius from 5000m to 10000m from a location(18.865644 -33.930755) as follows:
 
 `python Prototype_Events.py event_create_random --lon 18.865644 --lat -33.930755 --min_dist 5000 --max_dist 10000 --num 1000`
 
