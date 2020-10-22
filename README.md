@@ -1,4 +1,4 @@
-# PostGIS-Demo
+# PostGIS-Python-Demo
 _This is an example on how to integrate and implement basic CRUD and location add/search functionality with Python and a PostGIS enabled PostgreSQL database._
 
 ## Installation
