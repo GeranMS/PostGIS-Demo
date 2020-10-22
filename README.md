@@ -12,7 +12,7 @@ _This is an example on how to integrate and implement basic CRUD and location ad
       
 ## Setup
 
-To intitialize a PostGIS enabled PostgreSQL database follow the guide posted in the docs folder linked to [here](https://github.com/GeranMS/PostGIS-Demo/tree/master/docs).
+To intitialize a PostGIS enabled PostgreSQL database follow the guide posted in the docs folder linked to [here](https://github.com/GeranMS/PostGIS-Python-Demo/tree/master/docs).
 
 Then configure and change your connection string to your specifications of the database in the code of Prototype_Events.py and CRUD.py, as shown an example of here:
 ~~~python
