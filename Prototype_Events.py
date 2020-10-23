@@ -69,7 +69,7 @@ def event_search(lon: float, lat: float, rad: float):
     cur = conn.cursor()
 
     # A sample query of data within radius from the "events" table in the "Prototype_Events" database
-    cur.execute("SELECT (id,name) FROM events WHERE ST_DWithin(coordinates, 'SRID=4326;POINT(%s %s)'::geography, %s)",(lon,lat,rad))
+    cur.execute("SELECT (id,name) FROM events WHERE ST_DWithin(coordinates, 'SRID=4326;POINT(%s %s)', %s)",(lon,lat,rad))
     query_results = cur.fetchall()
 
     # Close the cursor and connection to so the server can allocate
@@ -94,7 +94,7 @@ def event_count(lon: float, lat: float, rad: float):
     cur = conn.cursor()
 
     # A sample query of data within radius from the "events" table in the "Prototype_Events" database
-    cur.execute("SELECT COUNT(id) FROM events WHERE ST_DWithin(coordinates, 'SRID=4326;POINT(%s %s)'::geography, %s)",(lon,lat,rad))
+    cur.execute("SELECT COUNT(id) FROM events WHERE ST_DWithin(coordinates, 'SRID=4326;POINT(%s %s)', %s)",(lon,lat,rad))
     query_results = cur.fetchall()
 
     # Close the cursor and connection to so the server can allocate
@@ -106,7 +106,7 @@ def event_count(lon: float, lat: float, rad: float):
 
 def event_create_random(lon: float, lat: float, min_dist: float, max_dist: float, num: int):
     """
-    Generate a database entry within given radius of coordinates
+    Generate a number of database entries within given radius bounds of given coordinates
     :param lon: longitude of point
     :param lat: latitude of point
     :param rad: radius in m
@@ -118,7 +118,7 @@ def event_create_random(lon: float, lat: float, min_dist: float, max_dist: float
     # Create a cursor object
     cur2 = conn.cursor()
 
-    for num,points in enumerate(range(0,num),1):
+    for number,points in enumerate(range(0,num),1):
 
         # Create random coordinates within radius of distance provided
         lon2,lat2 = Utilities.getEndpoint(lat,lon,min_dist,max_dist)
@@ -131,10 +131,10 @@ def event_create_random(lon: float, lat: float, min_dist: float, max_dist: float
         # Create geometry column value off new entry 
         cur2.execute("UPDATE events SET coordinates=ST_SetSRID(ST_MakePoint(longitude, latitude), 4326)")
 
-        if (num%100 == 0):
+        if (number%100 == 0 or number==num):
             
             conn.commit()
-            print("%s Records have been inserted.\n"%(num))
+            print("%s Records have been inserted.\n"%(number))
 
     # Close the cursor and connection to so the server can allocate
     # bandwidth to other requests
