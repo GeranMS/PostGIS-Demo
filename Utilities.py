@@ -10,45 +10,25 @@ import csv
 start = None
 total = 0
 loop_count = 0
+t_elapsed = None
 
 
-def secondsToStr(elapsed=None):
-    if elapsed is None:
-        global start
+def start_log():
+    global start
+    if t_elapsed == None:
         start = time()
-        return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    else:
-        return str(timedelta(seconds=elapsed))
 
 
-def log(s, elapsed=None):
-    line = "="*40
-    print(line)
-    print(secondsToStr(), '-', s)
-    if elapsed:
-        print("Elapsed time:", elapsed)
-    print(line)
-    print()
-
-    # return elapsed
-
-
-def endlog():
-    global total
+def end_log():
+    global t_elapsed
     global loop_count
 
-    end = time()
-    elapsed = end-start
-    total += elapsed
+    t_elapsed = time() - start
     loop_count += 1
 
-    log("End Loop {}".format(loop_count), secondsToStr(elapsed))
-    log("Total Runtime", secondsToStr(total))
-
-    # return elapsed
+    print("End Loop {}, Execution time: {}".format(loop_count, t_elapsed))
 
 
-#
 def getEndpoint(lat1, lon1, d1, d2):
     bearing = random.uniform(0, 360)
     dist = random.uniform(d1, d2)
